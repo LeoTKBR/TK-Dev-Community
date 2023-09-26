@@ -1,5 +1,4 @@
-function endTaskModalWindow(cid, storage)
-	local player = Player(cid)
+function endTaskModalWindow(player, storage)
 	local data = getTaskByStorage(storage)
 	local newmessage
 	local completion = false
@@ -83,14 +82,14 @@ function endTaskModalWindow(cid, storage)
 		end
 	end
 	if taskOptions.selectLanguage == 1 then
-		window:addButton(task_pt_br.returnButton, function() sendTaskModalWindow(cid) end)
+		window:addButton(task_pt_br.returnButton, function() sendTaskModalWindow(player) end)
 	else
-		window:addButton("Back", function() sendTaskModalWindow(cid) end)
+		window:addButton("Back", function() sendTaskModalWindow(player) end)
 	end
 	window:sendToPlayer(player)
 end
-function acceptedTaskModalWindow(cid)
-	local player = Player(cid)
+function acceptedTaskModalWindow(player)
+	
 	local title = taskOptions.selectLanguage == 1 and task_pt_br.title or "Task System"
 	local customMessage = taskOptions.selectLanguage == 1 and task_pt_br.messageAcceptedText or "You accepted this task!"
 	local window = ModalWindow {
@@ -99,15 +98,15 @@ function acceptedTaskModalWindow(cid)
 	}
 	player:getPosition():sendMagicEffect(CONST_ME_TREASURE_MAP)
 	if taskOptions.selectLanguage == 1 then
-		window:addButton(task_pt_br.returnButton, function() sendTaskModalWindow(cid) end)
+		window:addButton(task_pt_br.returnButton, function() sendTaskModalWindow(player) end)
 	else
-		window:addButton("Back", function() sendTaskModalWindow(cid) end)
+		window:addButton("Back", function() sendTaskModalWindow(player) end)
 	end
 	window:sendToPlayer(player)
 end
 
 function confirmTaskModalWindow(cid, storage)
-	local player = Player(cid)
+	
 	local title = taskOptions.selectLanguage == 1 and task_pt_br.title or "Task System"
 	local detailsMessage = taskOptions.selectLanguage == 1 and task_pt_br.messageDetailsText or "Here are the details of your task:"
 	local window = ModalWindow {
@@ -170,24 +169,24 @@ function confirmTaskModalWindow(cid, storage)
 	end
 	local function confirmCallback(button, choice)
 		if player:hasStartedTask(storage) or not player:canStartCustomTask(storage) then
-			errorModalWindow(cid)
+			errorModalWindow(player)
 		else
-			acceptedTaskModalWindow(cid)
+			acceptedTaskModalWindow(player)
 			player:startTask(storage)
 		end
 	end
 	if taskOptions.selectLanguage == 1 then
 		window:addButton(task_pt_br.confirmButton, confirmCallback)
-		window:addButton(task_pt_br.returnButton, function() sendTaskModalWindow(cid) end)
+		window:addButton(task_pt_br.returnButton, function() sendTaskModalWindow(player) end)
 	else
 		window:addButton("Choose", confirmCallback)
-		window:addButton("Back", function() sendTaskModalWindow(cid) end)
+		window:addButton("Back", function() sendTaskModalWindow(player) end)
 	end
 	window:sendToPlayer(player)
 end
 
-function errorModalWindow(cid)
-	local player = Player(cid)
+function errorModalWindow(player)
+	
 	local title = taskOptions.selectLanguage == 1 and task_pt_br.title or "Task System"
 	local completedMessage = taskOptions.selectLanguage == 1 and task_pt_br.messageAlreadyCompleteTask or "You have already completed this task."
 	local window = ModalWindow {
@@ -196,15 +195,15 @@ function errorModalWindow(cid)
 	}
 	player:getPosition():sendMagicEffect(CONST_ME_STUN)
 	if taskOptions.selectLanguage == 1 then
-		window:addButton(task_pt_br.returnButton, function() sendTaskModalWindow(cid) end)
+		window:addButton(task_pt_br.returnButton, function() sendTaskModalWindow(player) end)
 	else
-		window:addButton("Back", function() sendTaskModalWindow(cid) end)
+		window:addButton("Back", function() sendTaskModalWindow(player) end)
 	end
 	window:sendToPlayer(player)
 end
 
 function cancelTaskModalWindow(cid, managed)
-	local player = Player(cid)
+	
 	local newmessage
 	if managed then
 		if taskOptions.selectLanguage == 1 then
@@ -226,15 +225,15 @@ function cancelTaskModalWindow(cid, managed)
 	}
 	player:getPosition():sendMagicEffect(CONST_ME_EXPLOSIONAREA)
 	if taskOptions.selectLanguage == 1 then
-		window:addButton(task_pt_br.returnButton, function() sendTaskModalWindow(cid) end)
+		window:addButton(task_pt_br.returnButton, function() sendTaskModalWindow(player) end)
 	else
-		window:addButton("Back", function() sendTaskModalWindow(cid) end)
+		window:addButton("Back", function() sendTaskModalWindow(player) end)
 	end
 	window:sendToPlayer(player)
 end
 
-function sendTaskModalWindow(cid)
-	local player = Player(cid)
+function sendTaskModalWindow(player)
+	
 	local title = taskOptions.selectLanguage == 1 and task_pt_br.title or "Task System"
 	local taskButtonMessage = taskOptions.selectLanguage == 1 and task_pt_br.choiceBoardText or "Choose a task and use the buttons below:"
 	local window = ModalWindow {
@@ -273,7 +272,7 @@ function sendTaskModalWindow(cid)
 		if player:hasStartedTask(temptasks[id]) then
 			endTaskModalWindow(cid, temptasks[id])
 		elseif not player:canStartCustomTask(temptasks[id]) then
-			errorModalWindow(cid)
+			errorModalWindow(player)
 		else
 			confirmTaskModalWindow(cid, temptasks[id])
 		end
