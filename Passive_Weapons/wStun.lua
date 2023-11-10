@@ -68,15 +68,15 @@ wStun.onUseWeapon = function(player, variant)
 						targetPlayer:getPosition():sendMagicEffect(config.effect)
 						passive:execute(player, variant)
 						for i = 1, config.duration do
-                            addEvent(function() targetPlayer:getPosition():sendMagicEffect(config.effect) end, 1000 * (i - 1))
-                            addEvent(function() targetPlayer:getPosition():sendSingleSoundEffect(sound.stun, player:isInGhostMode() and nil or player) end, 1000 * (i - 1))
+                            addEvent(function() local checkTarget = tile:getCreatureCount() if checkTarget >= 1 then targetPlayer:getPosition():sendMagicEffect(config.effect) return true end end, 1000 * (i - 1))
+                            addEvent(function() local checkTarget = tile:getCreatureCount() if checkTarget >= 1 then targetPlayer:getPosition():sendSingleSoundEffect(sound.stun, player:isInGhostMode() and nil or player) return true end end, 1000 * (i - 1))
                         end
 					end
 					return true
 				end
 			end, 500)
 		end
-	return combat:execute(player, variant)	
+	return combat:execute(player, variant)
 end
 
 wStun:id(3300) -- ItemId
