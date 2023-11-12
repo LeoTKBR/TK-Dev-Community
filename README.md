@@ -7,7 +7,6 @@
 [![GitHub](https://img.shields.io/github/license/LeoTKBR/TK-Dev-Community?style=plastic&logo=github)](https://github.com/LeoTKBR/TK-Dev-Community/blob/main/LICENSE)
 
 ![GitHub repo size](https://img.shields.io/github/repo-size/LeoTKBR/TK-Dev-Community?style=plastic&logo=googleoptimize)
-![GitHub downloads](https://img.shields.io/github/downloads/leotkbr/TK-Dev-Community/total?label=Downloads&style=plastic&logo=clickup)
 
 ## Donate
 [![PT-BR - Picpay](https://img.shields.io/security-headers?label=|BR|Picpay&style=plastic&url=https%3A%2F%2Fpicpay.me%2Fleo.fabian)](https://picpay.me/leo.fabian)
