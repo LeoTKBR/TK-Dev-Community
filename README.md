@@ -6,7 +6,7 @@
 [![Contributors](https://img.shields.io/github/contributors/LeoTKBR/TK-Dev-Community.svg?style=plastic&logo=microsoftteams)](https://github.com/LeoTKBR/TK-Dev-Community/graphs/contributors)
 [![GitHub](https://img.shields.io/github/license/LeoTKBR/TK-Dev-Community?style=plastic&logo=github)](https://github.com/LeoTKBR/TK-Dev-Community/blob/main/LICENSE)
 ![](https://img.shields.io/github/last-commit/LeoTKBR/TK-Dev-Community/main?style=plastic&logo=searxng&label=commit&cacheSeconds=60)
-![](https://img.shields.io/youtube/channel/subscribers/UC_SdCh6vL5zDt3PqDAZAtmA?style=plastic&logo=youtube&label=inscritos&cacheSeconds=60)
+[![](https://img.shields.io/youtube/channel/subscribers/UC_SdCh6vL5zDt3PqDAZAtmA?style=plastic&logo=youtube&label=inscritos&cacheSeconds=60)](https://www.youtube.com/@TKDevCommunity)
 
 
 ![GitHub repo size](https://img.shields.io/github/repo-size/LeoTKBR/TK-Dev-Community?style=plastic&logo=googleoptimize)
