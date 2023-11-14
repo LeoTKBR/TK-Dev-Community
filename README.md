@@ -1,10 +1,11 @@
 # TK Dev Community - Informações
 
-[![Discord Channel](https://img.shields.io/discord/1018914467909750784.svg?style=plastic&logo=discord)](https://discord.gg/phJZeHa2k4)
-[![GitHub issues](https://img.shields.io/github/issues/LeoTKBR/TK-Dev-Community?style=plastic&logo=appwrite)](https://github.com/opentibiabr/canary/issues)
-[![GitHub pull request](https://img.shields.io/github/issues-pr/LeoTKBR/TK-Dev-Community?style=plastic&logo=windowsterminal)](https://github.com/opentibiabr/canary/pulls)
+[![Discord Oficial](https://img.shields.io/discord/1018914467909750784.svg?style=plastic&logo=discord)](https://discord.gg/phJZeHa2k4)
+[![GitHub Issues](https://img.shields.io/github/issues/LeoTKBR/TK-Dev-Community?style=plastic&logo=appwrite)](https://github.com/opentibiabr/canary/issues)
+[![GitHub Pull Request](https://img.shields.io/github/issues-pr/LeoTKBR/TK-Dev-Community?style=plastic&logo=windowsterminal)](https://github.com/opentibiabr/canary/pulls)
 [![Contributors](https://img.shields.io/github/contributors/LeoTKBR/TK-Dev-Community.svg?style=plastic&logo=microsoftteams)](https://github.com/LeoTKBR/TK-Dev-Community/graphs/contributors)
 [![GitHub](https://img.shields.io/github/license/LeoTKBR/TK-Dev-Community?style=plastic&logo=github)](https://github.com/LeoTKBR/TK-Dev-Community/blob/main/LICENSE)
+[![Visitas](https://img.shields.io/github/searxng/LeoTKBR/TK-Dev-Community?style=plastic&logo=github)]
 
 ![GitHub repo size](https://img.shields.io/github/repo-size/LeoTKBR/TK-Dev-Community?style=plastic&logo=googleoptimize)
 
