@@ -5,7 +5,7 @@
 [![GitHub Pull Request](https://img.shields.io/github/issues-pr/LeoTKBR/TK-Dev-Community?style=plastic&logo=windowsterminal)](https://github.com/opentibiabr/canary/pulls)
 [![Contributors](https://img.shields.io/github/contributors/LeoTKBR/TK-Dev-Community.svg?style=plastic&logo=microsoftteams)](https://github.com/LeoTKBR/TK-Dev-Community/graphs/contributors)
 [![GitHub](https://img.shields.io/github/license/LeoTKBR/TK-Dev-Community?style=plastic&logo=github)](https://github.com/LeoTKBR/TK-Dev-Community/blob/main/LICENSE)
-[![Visitas](https://img.shields.io/github/visit/LeoTKBR/TK-Dev-Community?style=plastic&logo=searxng)]
+[![Visitas](https://img.shields.io/pingpong/status/sp_da85384ca1ea445fa19eb65eee78ee66?logo=searxng)]
 
 ![GitHub repo size](https://img.shields.io/github/repo-size/LeoTKBR/TK-Dev-Community?style=plastic&logo=googleoptimize)
 
