@@ -8,14 +8,14 @@
 
 ![GitHub repo size](https://img.shields.io/github/repo-size/LeoTKBR/TK-Dev-Community?style=plastic&logo=googleoptimize)
 
-## Project
+## Projeto
 Repositório oficial da Comunidade TK Dev, a ideia é gerenciar e manter todos os scripts disponíveis gratuitamente sempre atualizados e corrigidos.
 
 Lembrando que o foco sempre serão os roteiros personalizados, não se limitando ao mesmo curso.
 
 Se você quiser ajudar de alguma forma, aqui está o link para doações.
 
-## Donate
-[Doar - Picpay ( BRL )](https://tk-dev-community.gitbook.io/home/doar/brl)
+## Doar
+[Picpay ( BRL )](https://tk-dev-community.gitbook.io/home/doar/brl)
 
-[Doar - Paypal ( BRL )](https://tk-dev-community.gitbook.io/home/doar/outros)
+[Paypal ( BRL )](https://tk-dev-community.gitbook.io/home/doar/outros)
