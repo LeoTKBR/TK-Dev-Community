@@ -8,7 +8,10 @@ local config = {
 	skill = SKILL_FIST, -- Skill chance para ativar a passiva
 	skillChance = 0.005, -- 0.005 = 0.5% / skill = 100 - skillChance = 0.5 = 50%
 	effect = CONST_ME_STUN, -- efeito ao teleportar
+	effectHit = CONST_ME_GROUNDSHAKER,
 	duration = 8, -- 20 = 20 segundos - tempo que vai durar o sangramento
+	cooldownPassive = 16, -- 10 = 10 seconds
+	cooldownStorage = 69995,
 }
 
 local sound = {
@@ -39,41 +42,76 @@ local conditionMuted = Condition(config.muted, config.channelMuted)
 conditionMuted:setParameter(CONDITION_PARAM_TICKS, config.duration*1000)
 passive:addCondition(conditionMuted)
 
+function effectAndSound(player, variant)
+	if not player then return true end
+	local target = Monster(variant.number)
+	local targetPlayer = Player(variant.number)
+	if target then
+	local tile = Tile(target:getPosition())
+	local checkTarget = tile:getCreatureCount()
+		if checkTarget >= 1 then
+			target:getPosition():sendMagicEffect(config.effect)
+			target:getPosition():sendSingleSoundEffect(sound.stun, player:isInGhostMode() and nil or player)
+			return true
+		end
+	else
+		if not targetPlayer then return true end
+		local tile = Tile(targetPlayer:getPosition())
+		local checkTarget = tile:getCreatureCount()
+		if checkTarget >= 1 then
+			targetPlayer:getPosition():sendMagicEffect(config.effect)
+			targetPlayer:getPosition():sendSingleSoundEffect(sound.stun, player:isInGhostMode() and nil or player)
+			return true
+		end
+		return true
+	end
+end
+
 local wStun = Weapon(config.weaponType)
 wStun.onUseWeapon = function(player, variant)
+	if not player then return true end
 	if player:getSkull() == SKULL_BLACK then
 		return false
 	end
-	if not player then return true end
 	local chance = math.random()
 	local skillChance = (player:getSkillLevel(config.skill) * config.skillChance)
 	local target = Monster(variant.number)
-	local targetPlayer = player:getTarget(variant.number)
-	local monsterType = target:getType()
-	local tile = Tile(target:getPosition())
-		if monsterType:bossRaceId() == 1 then return combat:execute(player, variant) end
+	local targetPlayer = Player(variant.number)
+	local monsterType = target and target:getType()
+		if targetPlayer:isMonster() and monsterType:bossRaceId() == 1 then return combat:execute(player, variant) end
 		if chance <= skillChance then
 			addEvent(function()
 				if target then
+					if player:getStorageValue(config.cooldownStorage) - os.time() > 0 then
+						combat:execute(player, variant)
+						target:getPosition():sendMagicEffect(config.effectHit)
+						target:getPosition():sendSingleSoundEffect(sound.stun, player:isInGhostMode() and nil or player)
+						return true
+					end
 					if not target:getCondition(config.condition, config.conditionMuted) then
-						target:getPosition():sendMagicEffect(config.effect)
 						passive:execute(player, variant)
+						target:getPosition():sendMagicEffect(config.effectHit)
 						for i = 1, config.duration do
-                            addEvent(function() local checkTarget = tile:getCreatureCount() if checkTarget >= 1 then target:getPosition():sendMagicEffect(config.effect) return true end end, 1000 * (i - 1))
-                            addEvent(function() local checkTarget = tile:getCreatureCount() if checkTarget >= 1 then target:getPosition():sendSingleSoundEffect(sound.stun, player:isInGhostMode() and nil or player) return true end end, 1000 * (i - 1))
+                            addEvent(function() effectAndSound(player, variant) end, 1000 * (i - 1))
 						end
 					end
 				elseif targetPlayer then
+					if player:getStorageValue(config.cooldownStorage) - os.time() > 0 then
+						combat:execute(player, variant)
+						targetPlayer:getPosition():sendMagicEffect(config.effectHit)
+						targetPlayer:getPosition():sendSingleSoundEffect(sound.stun, player:isInGhostMode() and nil or player)
+						return true
+					end
 					if not targetPlayer:getCondition(config.condition, config.conditionMuted) then
-						targetPlayer:getPosition():sendMagicEffect(config.effect)
 						passive:execute(player, variant)
+						targetPlayer:getPosition():sendMagicEffect(config.effectHit)
 						for i = 1, config.duration do
-                            addEvent(function() local checkTarget = tile:getCreatureCount() if checkTarget >= 1 then targetPlayer:getPosition():sendMagicEffect(config.effect) return true end end, 1000 * (i - 1))
-                            addEvent(function() local checkTarget = tile:getCreatureCount() if checkTarget >= 1 then targetPlayer:getPosition():sendSingleSoundEffect(sound.stun, player:isInGhostMode() and nil or player) return true end end, 1000 * (i - 1))
+                            addEvent(function() effectAndSound(player, variant) end, 1000 * (i - 1))
                         end
 					end
 					return true
 				end
+				player:setStorageValue(config.cooldownStorage, os.time() + config.cooldownPassive)
 			end, 500)
 		end
 	return combat:execute(player, variant)
