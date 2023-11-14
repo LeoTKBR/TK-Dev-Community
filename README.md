@@ -9,7 +9,7 @@
 
 ![GitHub repo size](https://img.shields.io/github/repo-size/LeoTKBR/TK-Dev-Community?style=plastic&logo=googleoptimize)
 
-##Youtube
+## Youtube
 [![](https://img.shields.io/youtube/channel/subscribers/UC_SdCh6vL5zDt3PqDAZAtmA?style=plastic&logo=youtube&label=inscritos&cacheSeconds=60)](https://www.youtube.com/@TKDevCommunity)
 [![](https://img.shields.io/youtube/channel/views/UC_SdCh6vL5zDt3PqDAZAtmA?style=plastic&logo=youtube&label=visualiza%C3%A7%C3%B5es&cacheSeconds=60)](https://www.youtube.com/@TKDevCommunity)
 
