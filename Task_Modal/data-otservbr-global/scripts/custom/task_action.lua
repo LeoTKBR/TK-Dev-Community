@@ -18,7 +18,7 @@ function endTaskModalWindow(player, storage)
 		end
 	end
 	local title = taskOptions.selectLanguage == 1 and task_pt_br.title or "Task System"
-	local window = ModalWindow {
+	local window = ModalWindow{
 		title = title,
 		message = newmessage
 	}
@@ -89,12 +89,11 @@ function endTaskModalWindow(player, storage)
 	window:sendToPlayer(player)
 end
 function acceptedTaskModalWindow(player)
-	
 	local title = taskOptions.selectLanguage == 1 and task_pt_br.title or "Task System"
 	local customMessage = taskOptions.selectLanguage == 1 and task_pt_br.messageAcceptedText or "You accepted this task!"
-	local window = ModalWindow {
+	local window = ModalWindow{
 		title = title,
-		message = customMessage,
+		message = customMessage
 	}
 	player:getPosition():sendMagicEffect(CONST_ME_TREASURE_MAP)
 	if taskOptions.selectLanguage == 1 then
@@ -105,13 +104,12 @@ function acceptedTaskModalWindow(player)
 	window:sendToPlayer(player)
 end
 
-function confirmTaskModalWindow(cid, storage)
-	
+function confirmTaskModalWindow(player, storage)
 	local title = taskOptions.selectLanguage == 1 and task_pt_br.title or "Task System"
 	local detailsMessage = taskOptions.selectLanguage == 1 and task_pt_br.messageDetailsText or "Here are the details of your task:"
-	local window = ModalWindow {
+	local window = ModalWindow{
 		title = title,
-		message = detailsMessage,
+		message = detailsMessage
 	}
 	local data = getTaskByStorage(storage)
 	if taskOptions.selectLanguage == 1 then
@@ -167,7 +165,7 @@ function confirmTaskModalWindow(cid, storage)
 			end
 		end
 	end
-	local function confirmCallback(button, choice)
+	local function confirmCallback(player, button, choice)
 		if player:hasStartedTask(storage) or not player:canStartCustomTask(storage) then
 			errorModalWindow(player)
 		else
@@ -186,12 +184,11 @@ function confirmTaskModalWindow(cid, storage)
 end
 
 function errorModalWindow(player)
-	
 	local title = taskOptions.selectLanguage == 1 and task_pt_br.title or "Task System"
 	local completedMessage = taskOptions.selectLanguage == 1 and task_pt_br.messageAlreadyCompleteTask or "You have already completed this task."
-	local window = ModalWindow {
+	local window = ModalWindow{
 		title = title,
-		message = completedMessage,
+		message = completedMessage
 	}
 	player:getPosition():sendMagicEffect(CONST_ME_STUN)
 	if taskOptions.selectLanguage == 1 then
@@ -202,8 +199,7 @@ function errorModalWindow(player)
 	window:sendToPlayer(player)
 end
 
-function cancelTaskModalWindow(cid, managed)
-	
+function cancelTaskModalWindow(player, managed)
 	local newmessage
 	if managed then
 		if taskOptions.selectLanguage == 1 then
@@ -219,9 +215,9 @@ function cancelTaskModalWindow(cid, managed)
 		end
 	end
 	local title = taskOptions.selectLanguage == 1 and task_pt_br.title or "Task System"
-	local window = ModalWindow {
+	local window = ModalWindow{
 		title = title,
-		message = newmessage,
+		message = newmessage
 	}
 	player:getPosition():sendMagicEffect(CONST_ME_EXPLOSIONAREA)
 	if taskOptions.selectLanguage == 1 then
@@ -233,12 +229,11 @@ function cancelTaskModalWindow(cid, managed)
 end
 
 function sendTaskModalWindow(player)
-	
 	local title = taskOptions.selectLanguage == 1 and task_pt_br.title or "Task System"
 	local taskButtonMessage = taskOptions.selectLanguage == 1 and task_pt_br.choiceBoardText or "Choose a task and use the buttons below:"
-	local window = ModalWindow {
+	local window = ModalWindow{
 		title = title,
-		message = taskButtonMessage,
+		message = taskButtonMessage
 	}
 	local temptasks = {}
 	for _, data in pairs (taskConfiguration) do
@@ -267,33 +262,33 @@ function sendTaskModalWindow(player)
 			window:addChoice(data.name ..", "..data.total)
 		end
 	end
-	local function confirmCallback(button, choice)
+	local function confirmCallback(player, button, choice)
 		local id = choice.id
 		if player:hasStartedTask(temptasks[id]) then
-			endTaskModalWindow(cid, temptasks[id])
+			endTaskModalWindow(player, temptasks[id])
 		elseif not player:canStartCustomTask(temptasks[id]) then
 			errorModalWindow(player)
 		else
-			confirmTaskModalWindow(cid, temptasks[id])
+			confirmTaskModalWindow(player, temptasks[id])
 		end
 	end
-	local function cancelCallback(button, choice)
+	local function cancelCallback(player, button, choice)
 		local id = choice.id
 		if player:hasStartedTask(temptasks[id]) then
-			cancelTaskModalWindow(cid, true)
+			cancelTaskModalWindow(player, true)
 			player:endTask(temptasks[id], true)
 		else
-			cancelTaskModalWindow(cid, false)
+			cancelTaskModalWindow(player, false)
 		end
 	end
 	if taskOptions.selectLanguage == 1 then
-		window:addButton(task_pt_br.exitButton)
 		window:addButton(task_pt_br.confirmButton, confirmCallback)
 		window:addButton(task_pt_br.cancelButton, cancelCallback)
+		window:addButton(task_pt_br.exitButton)
 	else
-		window:addButton("Exit")
 		window:addButton("Choose", confirmCallback)
 		window:addButton("Cancel", cancelCallback)
+		window:addButton("Exit")
 	end
 	window:sendToPlayer(player)
 end
@@ -330,7 +325,7 @@ function task.onUse(player, item, fromPosition, target, toPosition, isHotkey)
 	
 	if isInRange then
 		player:getPosition():sendMagicEffect(CONST_ME_TREASURE_MAP)
-		sendTaskModalWindow(player:getId())
+		sendTaskModalWindow(player)
 	else
 		player:getPosition():sendMagicEffect(CONST_ME_POFF)
 		if taskOptions.selectLanguage == 1 then
