@@ -5,7 +5,9 @@ taskOptions = {
         {x = 1309, y = 921, z = 6},
         {x = 1307, y = 924, z = 6},
     },
-	selectLanguage = 1 -- options: 1 = pt_br or 2 = english
+	selectLanguage = 1, -- options: 1 = pt_br or 2 = english
+	uniqueTask = true, -- do one task at a time
+	uniqueTaskStorage = 65002
 }
 
 task_pt_br = {
@@ -15,6 +17,7 @@ task_pt_br = {
 	returnButton = "Voltar",
 	title = "Quadro De Missões",
 	missionError = "Missão esta em andamento ou ela já foi concluida.",
+	uniqueMissionError = "Você só pode fazer uma missão por vez.",
 	missionErrorTwo = "Você concluiu a missão",
 	missionErrorTwoo = "\nAqui estão suas recompensas:",
 	choiceText = "- Experiência: ",
@@ -38,13 +41,6 @@ task_pt_br = {
 }
 
 taskConfiguration = {
-{name = "Rotworm", color = 40, total = 250, type = "once", storage = 190006, storagecount = 190007, 
-rewards = {
-{3043, 10},
-{"exp", 100000},
-	},
-},
-
 {name = "Minotaur", color = 40, total = 5000, type = "once", storage = 190000, storagecount = 190001, 
 rewards = {
 {5804, 1},
@@ -64,6 +60,13 @@ rewards = {
 rewards = {
 {5919, 1},
 {"exp", 1500000},
+	},
+},
+
+{name = "Rotworm", color = 40, total = 250, type = "once", storage = 190006, storagecount = 190007, 
+rewards = {
+{3043, 10},
+{"exp", 100000},
 	},
 },
 

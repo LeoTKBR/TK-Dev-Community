@@ -5,8 +5,10 @@ function endTaskModalWindow(player, storage)
 	if player:getTaskKills(data.storagecount) < data.total then
 		if taskOptions.selectLanguage == 1 then
 			newmessage = task_pt_br.missionError
+			player:getPosition():sendSingleSoundEffect(SOUND_EFFECT_TYPE_DIST_ATK_THROW_SHOT, player:isInGhostMode() and nil or player)
 		else
 			newmessage = "You have already completed, or are in progress on this task."
+			player:getPosition():sendSingleSoundEffect(SOUND_EFFECT_TYPE_DIST_ATK_THROW_SHOT, player:isInGhostMode() and nil or player)
 		end
 	else
 		player:endTask(storage, false)
@@ -42,6 +44,8 @@ function endTaskModalWindow(player, storage)
 				elseif tonumber(info[1]) then
 					window:addChoice("- ".. info[2]*taskOptions.bonusRate .." "..ItemType(info[1]):getName())
 					player:addItem(info[1], info[2]*taskOptions.bonusRate)
+					player:setStorageValue(taskOptions.uniqueTaskStorage, -1)
+					player:getPosition():sendSingleSoundEffect(SOUND_EFFECT_TYPE_ACTION_LEVEL_ACHIEVEMENT, player:isInGhostMode() and nil or player)
 					player:getPosition():sendMagicEffect(CONST_ME_PRISMATIC_SPARK)
 					if taskOptions.selectLanguage == 1 then
 					player:say('Outros: '..  info[2]*taskOptions.bonusRate .. ' ' ..ItemType(info[1]):getName(), TALKTYPE_MONSTER_SAY)
@@ -70,6 +74,8 @@ function endTaskModalWindow(player, storage)
 				elseif tonumber(info[1]) then
 					window:addChoice("- ".. info[2] .." "..ItemType(info[1]):getName())
 					player:addItem(info[1], info[2])
+					player:setStorageValue(taskOptions.uniqueTaskStorage, -1)
+					player:getPosition():sendSingleSoundEffect(SOUND_EFFECT_TYPE_ACTION_LEVEL_ACHIEVEMENT, player:isInGhostMode() and nil or player)
 					player:getPosition():sendMagicEffect(CONST_ME_PRISMATIC_SPARK)
 					if taskOptions.selectLanguage == 1 then
 					player:say('Outros: '.. ItemType(info[1]):getName() .. '', TALKTYPE_MONSTER_SAY)
@@ -168,9 +174,13 @@ function confirmTaskModalWindow(player, storage)
 	local function confirmCallback(player, button, choice)
 		if player:hasStartedTask(storage) or not player:canStartCustomTask(storage) then
 			errorModalWindow(player)
+		elseif taskOptions.uniqueTask == true and player:getStorageValue(taskOptions.uniqueTaskStorage) == 1 then
+			uniqueModalWindow(player)
 		else
 			acceptedTaskModalWindow(player)
 			player:startTask(storage)
+			player:setStorageValue(taskOptions.uniqueTaskStorage, 1)
+			player:getPosition():sendSingleSoundEffect(SOUND_EFFECT_TYPE_ACTION_NOTIFICATION, player:isInGhostMode() and nil or player)
 		end
 	end
 	if taskOptions.selectLanguage == 1 then
@@ -191,6 +201,24 @@ function errorModalWindow(player)
 		message = completedMessage
 	}
 	player:getPosition():sendMagicEffect(CONST_ME_STUN)
+	player:getPosition():sendSingleSoundEffect(SOUND_EFFECT_TYPE_DIST_ATK_THROW_SHOT, player:isInGhostMode() and nil or player)
+	if taskOptions.selectLanguage == 1 then
+		window:addButton(task_pt_br.returnButton, function() sendTaskModalWindow(player) end)
+	else
+		window:addButton("Back", function() sendTaskModalWindow(player) end)
+	end
+	window:sendToPlayer(player)
+end
+
+function uniqueModalWindow(player)
+	local title = taskOptions.selectLanguage == 1 and task_pt_br.title or "Task System"
+	local completedMessage = taskOptions.selectLanguage == 1 and task_pt_br.uniqueMissionError or "You can only do one mission at a time."
+	local window = ModalWindow{
+		title = title,
+		message = completedMessage
+	}
+	player:getPosition():sendMagicEffect(CONST_ME_POFF)
+	player:getPosition():sendSingleSoundEffect(SOUND_EFFECT_TYPE_DIST_ATK_THROW_SHOT, player:isInGhostMode() and nil or player)
 	if taskOptions.selectLanguage == 1 then
 		window:addButton(task_pt_br.returnButton, function() sendTaskModalWindow(player) end)
 	else
@@ -220,6 +248,7 @@ function cancelTaskModalWindow(player, managed)
 		message = newmessage
 	}
 	player:getPosition():sendMagicEffect(CONST_ME_EXPLOSIONAREA)
+	player:getPosition():sendSingleSoundEffect(SOUND_EFFECT_TYPE_DIST_ATK_THROW_SHOT, player:isInGhostMode() and nil or player)
 	if taskOptions.selectLanguage == 1 then
 		window:addButton(task_pt_br.returnButton, function() sendTaskModalWindow(player) end)
 	else
@@ -268,6 +297,8 @@ function sendTaskModalWindow(player)
 			endTaskModalWindow(player, temptasks[id])
 		elseif not player:canStartCustomTask(temptasks[id]) then
 			errorModalWindow(player)
+		elseif taskOptions.uniqueTask == true and player:getStorageValue(taskOptions.uniqueTaskStorage) >= 1 then
+			uniqueModalWindow(player)
 		else
 			confirmTaskModalWindow(player, temptasks[id])
 		end
@@ -277,6 +308,7 @@ function sendTaskModalWindow(player)
 		if player:hasStartedTask(temptasks[id]) then
 			cancelTaskModalWindow(player, true)
 			player:endTask(temptasks[id], true)
+			player:setStorageValue(taskOptions.uniqueTaskStorage, -1)
 		else
 			cancelTaskModalWindow(player, false)
 		end
@@ -296,46 +328,44 @@ end
 local task = Action()
 
 function task.onUse(player, item, fromPosition, target, toPosition, isHotkey)
-	local function getPositionTileItem(pos)
-		local p = player:getPosition()
-		if p.y ~= pos.y then
-			return {{x = pos.x - 1, y = pos.y, z = pos.z}, {x = pos.x + 1, y = pos.y, z = pos.z}}
-		elseif p.x ~= pos.x then
-			return {{x = pos.x, y = pos.y + 1, z = pos.z}, {x = pos.x, y = pos.y - 1, z = pos.z}}
-		elseif p.xy ~= pos.xy then
-			return {{x = pos.x + 1, y = pos.y + 1, z = pos.z}, {x = pos.x - 1, y = pos.y - 1, z = pos.z}}
-		elseif p.yx ~= pos.yx then
-			return {{x = pos.x - 1, y = pos.y + 1, z = pos.z}, {x = pos.x + 1, y = pos.y - 1, z = pos.z}}
-		end
-	end
-	
-	local isInRange = false
-	for _, itemPositionTile in ipairs(taskOptions.taskBoardPositions) do
-		local positionTiles = getPositionTileItem(itemPositionTile)
-		for _, pos in ipairs(positionTiles) do
-			if player:getPosition():getDistance(pos) <= 1 then
-				isInRange = true
-				break
-			end
-		end
-		if isInRange then
-			break
-		end
-	end
+    local function getPositionTileItem(pos)
+        local p = player:getPosition()
+        local xDiff = pos.x - p.x
+        local yDiff = pos.y - p.y
+
+        if math.abs(xDiff) <= 1 and math.abs(yDiff) <= 1 then
+            return true
+        end
+
+        return false
+    end
+
+    local isInRange = false
+    for _, itemPositionTile in ipairs(taskOptions.taskBoardPositions) do
+        if getPositionTileItem(itemPositionTile) then
+            isInRange = true
+            break
+        end
+    end
 	
 	if isInRange then
 		player:getPosition():sendMagicEffect(CONST_ME_TREASURE_MAP)
 		sendTaskModalWindow(player)
+		player:getPosition():sendSingleSoundEffect(SOUND_EFFECT_TYPE_PHYSICAL_RANGE_MISS, player:isInGhostMode() and nil or player)
 	else
 		player:getPosition():sendMagicEffect(CONST_ME_POFF)
 		if taskOptions.selectLanguage == 1 then
 			player:sendTextMessage(MESSAGE_EVENT_ADVANCE, "".. task_pt_br.messageTaskBoardError .."")
+			player:getPosition():sendSingleSoundEffect(SOUND_EFFECT_TYPE_DIST_ATK_THROW_SHOT, player:isInGhostMode() and nil or player)
 		else
 			player:sendTextMessage(MESSAGE_EVENT_ADVANCE, "The quest board is too far away or this is not the correct quest board.")
+			player:getPosition():sendSingleSoundEffect(SOUND_EFFECT_TYPE_DIST_ATK_THROW_SHOT, player:isInGhostMode() and nil or player)
+			return true
 		end
+		return true
 	end
 	
-	return false
+	return true
 end
 
 task:id(21332)

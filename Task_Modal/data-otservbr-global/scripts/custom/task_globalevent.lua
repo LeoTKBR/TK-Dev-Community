@@ -15,6 +15,7 @@ taskLog:register()
 local taskEvents = CreatureEvent("TaskEvents")
 function taskEvents.onLogin(player)
 	local events = {
+      -- Custom Events
       "TaskCreature"
 	}
 
