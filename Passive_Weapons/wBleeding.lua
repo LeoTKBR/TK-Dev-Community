@@ -58,7 +58,7 @@ wBleeding.onUseWeapon = function(player, variant)
 	local target = Monster(variant.number)
 	local targetPlayer = player:getTarget(variant.number)
 	local monsterType = target:getType()
-		if monsterType:bossRaceId() == 1 then return combat:execute(player, variant) end
+		if target:isMonster() and monsterType:bossRaceId() == 1 then return combat:execute(player, variant) end
 		if chance <= skillChance then
 			addEvent(function()
 				if target then
