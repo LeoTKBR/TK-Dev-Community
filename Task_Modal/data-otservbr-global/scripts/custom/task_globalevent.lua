@@ -11,3 +11,17 @@ Quests[#Quests + 1] = {name = "Tasks", startStorageId = taskQuestLog, startStora
 end
 
 taskLog:register()
+
+local taskEvents = CreatureEvent("TaskEvents")
+function taskEvents.onLogin(player)
+	local events = {
+      "TaskCreature"
+	}
+
+	for i = 1, #events do
+		player:registerEvent(events[i])
+	end
+	return true
+end
+
+taskEvents:register()
