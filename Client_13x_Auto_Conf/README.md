@@ -1,4 +1,4 @@
-# TK Dev Community - Instructions
+# TK Dev Community - Instruções
 
 **PT-BR**
 
@@ -11,6 +11,18 @@ Dentro da pasta 'conf', coloque o arquivo config.ini e configure-o corretamente 
 
 Este arquivo é um complemento, mas ainda será necessário alterar o RSA do cliente. No entanto, você pode usar o cliente 127.0.0.1 que vem por padrão, onde o config.ini mudará o IP, dessa forma não será mais necessário mexer no cliente.
 ```
+
+**Extra**
+
+**PT-BR**
+```
+É possível utilizar em portas específicas, como 8090 e outras, colocando o IP dessa forma.
+
+loginWebService=http://127.0.0.1:8090/login.php
+clientWebService=http://127.0.0.1:8090/login.php
+```
+
+# TK Dev Community - Instructions
 
 **EN**
 
@@ -25,14 +37,6 @@ this file is a complement but you will still need to change the client's RSA how
 ```
 
 **Extra**
-
-**PT-BR**
-```
-É possível utilizar em portas específicas, como 8090 e outras, colocando o IP dessa forma.
-
-loginWebService=http://127.0.0.1:8090/login.php
-clientWebService=http://127.0.0.1:8090/login.php
-```
 
 **EN**
 
