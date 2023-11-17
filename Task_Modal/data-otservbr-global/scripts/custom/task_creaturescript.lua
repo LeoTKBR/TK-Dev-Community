@@ -1,6 +1,6 @@
 local taskCreature = CreatureEvent("TaskCreature")
 
-function taskCreature.onKill(player, target)
+function taskCreature.onDeath(player, target)
 	if target:isPlayer() or target:getMaster() then
 		return true
 	end
