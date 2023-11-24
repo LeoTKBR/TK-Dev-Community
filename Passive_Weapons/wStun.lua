@@ -78,7 +78,14 @@ wStun.onUseWeapon = function(player, variant)
 	local target = Monster(variant.number)
 	local targetPlayer = Player(variant.number)
 	local monsterType = target and target:getType()
-		if not targetPlayer:isPlayer() and target:isMonster() and monsterType:bossRaceId() == 1 then return combat:execute(player, variant) end
+		if target and not target:isPlayer() then
+			if target:isMonster() then
+				local monsterType = target:getType()
+				if monsterType and monsterType:bossRaceId() == 1 then
+					return combat:execute(player, variant)
+				end
+			end
+		end
 		if chance <= skillChance then
 			addEvent(function()
 				if target then
