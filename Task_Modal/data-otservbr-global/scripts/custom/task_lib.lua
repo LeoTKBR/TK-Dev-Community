@@ -23,7 +23,8 @@ task_pt_br = {
 	choiceText = "- Experiência: ",
 	messageAcceptedText = "Você aceitou essa missão!",
 	messageDetailsText = "Detalhes da missão:",
-	choiceMonsterName = "Nome: ",
+	choiceMonsterName = "Missão: ",
+	choiceMonsterRace = "Raças: ",
 	choiceMonsterKill = "Abates: ",
 	choiceEveryDay = "Repetição: Todos os dias",
 	choiceRepeatable = "Repetição: Sempre",
@@ -42,170 +43,237 @@ task_pt_br = {
 
 taskConfiguration = {
 {name = "Minotaur", color = 40, total = 5000, type = "once", storage = 190000, storagecount = 190001, 
-rewards = {
-{5804, 1},
-{"exp", 1000000},
+	rewards = {
+	{5804, 1},
+	{"exp", 1000000},
+	},
+	races = {
+		"Minotaur",
+		"Minotaur Archer",
+		"Minotaur Mage",
 	},
 },
 
 {name = "Dragon", color = 40, total = 1000, type = "daily", storage = 190002, storagecount = 190003, 
-rewards = {
-{3043, 100},
-{5908, 1},
-{"exp", 1500000},
+	rewards = {
+	{3043, 100},
+	{5908, 1},
+	{"exp", 1500000},
+	},
+	races = {
+		"Dragon",
+		"Dragon Lord",
+		"Dragon Hatchling",
+		"Dragon Lord Hatchling",
 	},
 },
 
 {name = "Dragon Lord", color = 40, total = 60000, type = "once", storage = 190004, storagecount = 190005, 
-rewards = {
-{5919, 1},
-{"exp", 1500000},
+	rewards = {
+	{5919, 1},
+	{"exp", 1500000},
+	},
+	races = {
+		"Dragon Lord",
+		"Dragon Lord Hatchling",
 	},
 },
 
 {name = "Rotworm", color = 40, total = 250, type = "once", storage = 190006, storagecount = 190007, 
-rewards = {
-{3043, 10},
-{"exp", 100000},
+	rewards = {
+	{3043, 10},
+	{"exp", 100000},
+	},
+	races = {
+		"Rotworm",
+		"Carrion Worm",
+		"White Pale",
+		"Rotworm Queen",
 	},
 },
 
 {name = "Amazon", color = 40, total = 500, type = "repeatable", storage = 190008, storagecount = 190009, 
-rewards = { 
-{"exp", 1500000},
-{3437, 1},
+	rewards = { 
+	{"exp", 1500000},
+	{3437, 1},
+	},
+	races = {
+		"Amazon",
+		"Valkyrie",
+		"Xenia",
 	},
 },
 
 {name = "Valkyrie", color = 40, total = 50000, type = "once", storage = 190010, storagecount = 190011, 
-rewards = { 
-{3437, 1},
+	rewards = { 
+	{3437, 1},
+	},
+	races = {
+		"Amazon",
+		"Valkyrie",
+		"Xenia",
 	},
 },
 
-{name = "Weakened Frazzlemaw", color = 40, total = 1000, type = "daily", storage = 190012, storagecount = 190013, 
-rewards = { 
-{22516, 1},
+{name = "Frazzlemaw", color = 40, total = 1000, type = "daily", storage = 190012, storagecount = 190013, 
+	rewards = { 
+	{22516, 1},
+	{20270, 1},
+	{20272, 1},
+	},
+	races = {
+		"Weakened Frazzlemaw",
+		"Frazzlemaw",
+		"Memory Of A Frazzlemaw",
+		"Guzzlemaw",
+		"Mawhawk",
 	},
 },
 
 {name = "Enfeebled Silencer", color = 40, total = 1000, type = "daily", storage = 190014, storagecount = 190015, 
-rewards = { 
-{22721, 1},
+	rewards = { 
+	{22721, 1},
+	},
+	races = {
+		"Enfeebled Silencer",
 	},
 },
 
-{name = "Deepling Guard", color = 40, total = 1000, type = "daily", storage = 190016, storagecount = 190017, 
-rewards = { 
-{14142, 1},
+{name = "Deepling", color = 40, total = 1000, type = "daily", storage = 190016, storagecount = 190017, 
+	rewards = { 
+	{14142, 1},
+	{"exp", 10000000},
+	},
+	races = {
+		"Deepling Guard",
+		"Deepling Warrior",
+		"Deepling Scout",
 	},
 },
 
-{name = "Deepling Warrior", color = 40, total = 1000, type = "daily", storage = 190018, storagecount = 190019, 
-rewards = { 
-{"exp", 10000000},
+{name = "Silencer", color = 40, total = 5000, type = "once", storage = 190018, storagecount = 190019, 
+	rewards = { 
+	{20271, 1},
+	},
+	races = {
+		"Silencer",
 	},
 },
 
-{name = "Deepling Scout", color = 40, total = 1000, type = "daily", storage = 190020, storagecount = 190021, 
-rewards = { 
-{"exp", 10000000},
+{name = "Medusa", color = 40, total = 25000, type = "once", storage = 190020, storagecount = 190021, 
+	rewards = { 
+	{3393, 1},
+	},
+	races = {
+		"Medusa",
 	},
 },
 
-{name = "Guzzlemaw", color = 40, total = 5000, type = "once", storage = 190022, storagecount = 190023, 
-rewards = { 
-{20270, 1},
+{name = "Demon", color = 40, total = 66000, type = "once", storage = 190022, storagecount = 190023, 
+	rewards = { 
+	{3365, 1},
+	},
+	races = {
+		"Demon",
 	},
 },
 
-{name = "Frazzlemaw", color = 40, total = 5000, type = "once", storage = 190022, storagecount = 190023, 
-rewards = { 
-{20272, 1},
+{name = "Hero", color = 40, total = 50000, type = "once", storage = 190024, storagecount = 190025, 
+	rewards = { 
+	{3394, 1},
+	},
+	races = {
+		"Hero",
 	},
 },
 
-{name = "Silencer", color = 40, total = 5000, type = "once", storage = 190024, storagecount = 190025, 
-rewards = { 
-{20271, 1},
+{name = "Cloak Of Terror", color = 40, total = 1000, type = "daily", storage = 190026, storagecount = 190027, 
+	rewards = { 
+	{"exp", 30000000},
+	},
+	races = {
+		"Cloak Of Terror",
 	},
 },
 
-{name = "Medusa", color = 40, total = 25000, type = "once", storage = 190026, storagecount = 190027, 
-rewards = { 
-{3393, 1},
+{name = "Vibrant Phantom", color = 40, total = 1000, type = "daily", storage = 190028, storagecount = 190029, 
+	rewards = { 
+	{"exp", 30000000},
+	},
+	races = {
+		"Vibrant Phantom",
 	},
 },
 
-{name = "Demon", color = 40, total = 66000, type = "once", storage = 190028, storagecount = 190029, 
-rewards = { 
-{3365, 1},
+{name = "Courage Leech", color = 40, total = 1000, type = "daily", storage = 190030, storagecount = 190031, 
+	rewards = { 
+	{"exp", 30000000},
+	},
+	races = {
+		"Courage Leech",
 	},
 },
 
-{name = "Hero", color = 40, total = 50000, type = "once", storage = 190030, storagecount = 190031, 
-rewards = { 
-{3394, 1},
+{name = "Brachiodemon", color = 40, total = 1000, type = "daily", storage = 190032, storagecount = 190033, 
+	rewards = { 
+	{"exp", 30000000},
+	},
+	races = {
+		"Brachiodemon",
 	},
 },
 
-{name = "Cloak Of Terror", color = 40, total = 1000, type = "daily", storage = 190032, storagecount = 190033, 
-rewards = { 
-{"exp", 30000000},
+{name = "Infernal Demon", color = 40, total = 50000, type = "once", storage = 190034, storagecount = 190035, 
+	rewards = { 
+	{34109, 2},
+	},
+	races = {
+		"Infernal Demon",
 	},
 },
 
-{name = "Vibrant Phantom", color = 40, total = 1000, type = "daily", storage = 190034, storagecount = 190035, 
-rewards = { 
-{"exp", 30000000},
+{name = "Infernal Phantom", color = 40, total = 1000, type = "daily", storage = 190036, storagecount = 190037, 
+	rewards = { 
+	{"exp", 30000000},
+	},
+	races = {
+		"Infernal Phantom",
 	},
 },
 
-{name = "Courage Leech", color = 40, total = 1000, type = "daily", storage = 190036, storagecount = 190037, 
-rewards = { 
-{"exp", 30000000},
+{name = "Juggernaut", color = 40, total = 50420, type = "once", storage = 190038, storagecount = 190039, 
+	rewards = { 
+	{3422, 1},
+	},
+	races = {
+		"Juggernaut",
 	},
 },
 
-{name = "Brachiodemon", color = 40, total = 1000, type = "daily", storage = 190038, storagecount = 190039, 
-rewards = { 
-{"exp", 30000000},
+{name = "Dawnfire Asura", color = 40, total = 1000, type = "daily", storage = 190040, storagecount = 190041, 
+	rewards = { 
+	{"exp", 20000000},
+	},
+	races = {
+		"Dawnfire Asura",
 	},
 },
 
-{name = "Infernal Demon", color = 40, total = 50000, type = "once", storage = 190040, storagecount = 190041, 
-rewards = { 
-{34109, 2},
+{name = "Girtablilu Warrior", color = 40, total = 5000, type = "once", storage = 190042, storagecount = 190043, 
+	rewards = {   
+	{"exp", 100000000},
+	},
+	races = {
+		"Girtablilu Warrior",
 	},
 },
 
-{name = "Infernal Phantom", color = 40, total = 1000, type = "daily", storage = 190042, storagecount = 190043, 
-rewards = { 
-{"exp", 30000000},
+{name = "Dark Carnisylvan", color = 40, total = 25000, type = "once", storage = 190044, storagecount = 190045, 
+	rewards = { 
+	{"exp", 100000000},
 	},
-},
-
-{name = "Juggernaut", color = 40, total = 50420, type = "once", storage = 190044, storagecount = 190045, 
-rewards = { 
-{3422, 1},
-	},
-},
-
-{name = "Dawnfire Asura", color = 40, total = 1000, type = "daily", storage = 190046, storagecount = 190047, 
-rewards = { 
-{"exp", 20000000},
-	},
-},
-
-{name = "Girtablilu Warrior", color = 40, total = 5000, type = "once", storage = 190052, storagecount = 190053, 
-rewards = {   
-{"exp", 100000000},
-	},
-},
-
-{name = "Dark Carnisylvan", color = 40, total = 25000, type = "once", storage = 190062, storagecount = 190063, 
-rewards = { 
-{"exp", 100000000},
+	races = {
+		"Dark Carnisylvan",
 	},
 },
 }
@@ -240,8 +308,10 @@ end
 
 function getTaskByMonsterName(name)
 	for i, data in pairs(taskConfiguration) do
-		if data.name:lower() == name:lower() then
+		for _, dataList in ipairs(data.races) do
+		if dataList:lower() == name:lower() then
 			return data
+		end
 		end
 	end
 	return false

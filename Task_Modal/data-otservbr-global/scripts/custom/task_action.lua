@@ -120,6 +120,10 @@ function confirmTaskModalWindow(player, storage)
 	local data = getTaskByStorage(storage)
 	if taskOptions.selectLanguage == 1 then
 		window:addChoice(task_pt_br.choiceMonsterName..""..data.name)
+		window:addChoice(task_pt_br.choiceMonsterRace.."")
+		for _, races in pairs (data.races) do
+		window:addChoice("["..races.."]")
+		end
 		window:addChoice(task_pt_br.choiceMonsterKill..""..data.total)
 		if data.type == "daily" then
 			window:addChoice(task_pt_br.choiceEveryDay)
@@ -129,7 +133,11 @@ function confirmTaskModalWindow(player, storage)
 			window:addChoice(task_pt_br.choiceOnce)
 		end
 	else
-		window:addChoice("Monster name: "..data.name)
+		window:addChoice("Task name: "..data.name)
+		window:addChoice("Monster races: ")
+		for _, races in pairs (data.races) do
+			window:addChoice("["..races.."]")
+		end
 		window:addChoice("Necessary deaths: "..data.total)
 		if data.type == "daily" then
 			window:addChoice("You can repeat: Every day!")
