@@ -22,6 +22,6 @@ Lembrando que o foco sempre serão os roteiros personalizados, não se limitando
 Se você quiser ajudar de alguma forma, aqui está o link para doações.
 
 ## Doar
-[Picpay ( BRL )](https://tk-dev-community.gitbook.io/home/doar/brl)
+[Picpay ( BRL )](https://docs.tkdev.online/home/inicio/doar-donation#picpay)
 
-[Paypal ( BRL )](https://tk-dev-community.gitbook.io/home/doar/outros)
+[Paypal ( BRL )](https://docs.tkdev.online/home/inicio/doar-donation#paypal)

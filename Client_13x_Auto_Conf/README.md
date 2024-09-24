@@ -52,6 +52,6 @@ clientWebService=http://127.0.0.1:8090/login.php
 [![](https://img.shields.io/youtube/channel/views/UC_SdCh6vL5zDt3PqDAZAtmA?style=plastic&logo=youtube&label=visualiza%C3%A7%C3%B5es&cacheSeconds=60)](https://www.youtube.com/@TKDevCommunity)
 
 ## Doar
-[Picpay ( BRL )](https://tk-dev-community.gitbook.io/home/doar/brl)
+[Picpay ( BRL )](https://docs.tkdev.online/home/inicio/doar-donation#picpay)
 
-[Paypal ( BRL )](https://tk-dev-community.gitbook.io/home/doar/outros)
+[Paypal ( BRL )](https://docs.tkdev.online/home/inicio/doar-donation#paypal)
