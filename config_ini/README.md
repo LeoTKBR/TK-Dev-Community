@@ -1,28 +1,28 @@
-# TK Dev Community - Instruções
+ï»¿# TK Dev Core - InstruÃ§Ãµes
 
 **PT-BR**
 
 ```
-Para aplicar as alterações configuradas no arquivo config.ini, você precisará colocá-lo na pasta de destino:
+Para aplicar as alteraÃ§Ãµes configuradas no arquivo config.ini, vocÃª precisarÃ¡ colocÃ¡-lo na pasta de destino:
 
 pasta/conf
 
-Dentro da pasta 'conf', coloque o arquivo config.ini e configure-o corretamente com o seu IP e outras informações. Quando iniciar o cliente, as alterações serão aplicadas.
+Dentro da pasta 'conf', coloque o arquivo config.ini e configure-o corretamente com o seu IP e outras informaÃ§Ãµes. Quando iniciar o cliente, as alteraÃ§Ãµes serÃ£o aplicadas.
 
-Este arquivo é um complemento, mas ainda será necessário alterar o RSA do cliente. No entanto, você pode usar o cliente 127.0.0.1 que vem por padrão, onde o config.ini mudará o IP, dessa forma não será mais necessário mexer no cliente.
+Este arquivo Ã© um complemento, mas ainda serÃ¡ necessÃ¡rio alterar o RSA do cliente. No entanto, vocÃª pode usar o cliente 127.0.0.1 que vem por padrÃ£o, onde o config.ini mudarÃ¡ o IP, dessa forma nÃ£o serÃ¡ mais necessÃ¡rio mexer no cliente.
 ```
 
 **Extra**
 
 **PT-BR**
 ```
-É possível utilizar em portas específicas, como 8090 e outras, colocando o IP dessa forma.
+Ã‰ possÃ­vel utilizar em portas especÃ­ficas, como 8090 e outras, colocando o IP dessa forma.
 
 loginWebService=http://127.0.0.1:8090/login.php
 clientWebService=http://127.0.0.1:8090/login.php
 ```
 
-# TK Dev Community - Instructions
+# TK Dev Core - Instructions
 
 **EN**
 
